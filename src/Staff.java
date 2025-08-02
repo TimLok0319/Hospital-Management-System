@@ -24,6 +24,6 @@ public class Staff {
 	
 	public void showStaffInfo()
 	{
-		System.out.println("["+id+"]"+"    ["+name+"]    ["+designation+"]    ["+sex+"]    ["+salary+"]");
+		System.out.println("["+id+"]"+"    ["+name+"]    ["+designation+"]    ["+sex+"]    [RM"+salary+"]");
 	}
 }
