@@ -4,10 +4,9 @@ public class Staff {
 	private String id, name, designation, sex;
 	private int salary;
 	
-	Scanner read = new Scanner(System.in);
 	
-	public void newStaff()
-	{
+	public void newStaff(Scanner read)
+	{	
 		System.out.println("----- New Staff Registration -----");
 		System.out.print("Staff's ID: ");
 		id = read.nextLine();
