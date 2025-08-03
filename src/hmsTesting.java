@@ -7,14 +7,14 @@ public class hmsTesting {
 		Scanner read = new Scanner(System.in);
 		
 		Staff staff = new Staff();
-		//staff.newStaff(read);
+		staff.newStaff(read);
 		
 		Doctor doc1 = new Doctor();
 		doc1.newDoctor(read);
 		
 		
-		//staff.showStaffInfo();
-		doc1.showDoctorInfo();
+		staff.showInfo();
+		doc1.showInfo();
 	}
 
 }
