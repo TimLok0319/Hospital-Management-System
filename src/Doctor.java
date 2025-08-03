@@ -55,6 +55,11 @@ public class Doctor extends Staff{
 		qualification = read.nextLine();
 		System.out.print("Room: ");
 		room = read.nextInt();
-		read.nextInt();
+		read.nextLine();
+	}
+	
+	public void showDoctorInfo()
+	{
+		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+specialist+"]    ["+workTime+"]    ["+qualification+"]    ["+room+"]");
 	}
 }
