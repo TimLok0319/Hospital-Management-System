@@ -1,28 +1,8 @@
 import java.util.Scanner;
 
-public class Staff {
-	private String id, name, designation, sex;
+public class Staff extends Person{
+	private String designation;
 	private int salary;
-	
-	public String getID()
-	{
-		return id;
-	}
-	
-	public void setID(String id)
-	{
-		this.id = id;
-	}
-	
-	public String getName()
-	{
-		return name;
-	}
-	
-	public void setName(String name)
-	{
-		this.name = name;
-	}
 	
 	public String getDes()
 	{
@@ -32,16 +12,6 @@ public class Staff {
 	public void setDes(String designation)
 	{
 		this.designation = designation;
-	}
-	
-	public String getSex()
-	{
-		return sex;
-	}
-	
-	public void setSex(String sex)
-	{
-		this.sex = sex;
 	}
 	
 	public int getSalary()
@@ -57,21 +27,17 @@ public class Staff {
 	public void newStaff(Scanner read)
 	{	
 		System.out.println("----- New Staff Registration -----");
-		System.out.print("Staff's ID: ");
-		id = read.nextLine();
-		System.out.print("Name: ");
-		name = read.nextLine();	
+		super.newPerson(read);
 		System.out.print("Designation: ");
 		designation = read.nextLine();	
-		System.out.print("Sex: ");
-		sex = read.nextLine();	
 		System.out.print("Salary: ");
 		salary = read.nextInt();	
 		read.nextLine();
 	}
 	
-	public void showStaffInfo()
+	@Override
+	public void showInfo()
 	{
-		System.out.println("["+id+"]"+"    ["+name+"]    ["+designation+"]    ["+sex+"]    [RM"+salary+"]");
+		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+designation+"]    ["+super.getSex()+"]    [RM"+salary+"]");
 	}
 }

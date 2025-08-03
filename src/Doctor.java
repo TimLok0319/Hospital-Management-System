@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Doctor extends Staff{
+public class Doctor extends Person{
 	private String specialist, workTime, qualification;
 	private int room;
 	
@@ -46,7 +46,8 @@ public class Doctor extends Staff{
 	
 	public void newDoctor(Scanner read)
 	{
-		super.newStaff(read);
+		System.out.println("----- New Doctor Registration -----");
+		super.newPerson(read);
 		System.out.print("Specialization: ");
 		specialist = read.nextLine();
 		System.out.print("Work Time: ");
@@ -58,7 +59,8 @@ public class Doctor extends Staff{
 		read.nextLine();
 	}
 	
-	public void showDoctorInfo()
+	@Override
+	public void showInfo()
 	{
 		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+specialist+"]    ["+workTime+"]    ["+qualification+"]    ["+room+"]");
 	}
