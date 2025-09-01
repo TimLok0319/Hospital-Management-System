@@ -62,6 +62,6 @@ public class Doctor extends Person{
 	@Override
 	public void showInfo()
 	{
-		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+specialist+"]    ["+workTime+"]    ["+qualification+"]    ["+room+"]");
+		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getSpec()+"]    ["+getWorkT()+"]    ["+getQuali()+"]    ["+getRoom()+"]");
 	}
 }
