@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Doctor extends Person{
+public class Doctor extends Staff implements Displayable{
 	private String specialist, workTime, qualification;
 	private int room;
 	
