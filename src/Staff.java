@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Staff extends Person{
+public class Staff extends Person implements Displayable{
 	private String designation;
 	private int salary;
 	
