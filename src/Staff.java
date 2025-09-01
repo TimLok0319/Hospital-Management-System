@@ -38,6 +38,6 @@ public class Staff extends Person{
 	@Override
 	public void showInfo()
 	{
-		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+designation+"]    ["+super.getSex()+"]    [RM"+salary+"]");
+		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDes()+"]    ["+super.getSex()+"]    [RM"+getSalary()+"]");
 	}
 }
