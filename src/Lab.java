@@ -1,0 +1,37 @@
+
+import java.util.Scanner;
+
+public class Lab implements Displayable {
+	private String 	lab;
+	private int cost;
+
+	public String getLab() {
+		return lab;
+	}
+
+	public void setLab(String lab) {
+		this.lab = lab;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
+	}
+	
+	public void newLab(Scanner read) {
+		System.out.println("----- New Lab Registration -----");
+    	System.out.print("Lab Name: ");
+    	setLab(read.nextLine());
+    	System.out.print("Cost: ");
+    	setCost(read.nextInt());
+	}
+	
+	@Override
+	public void showInfo() {
+		System.out.println("["+getLab()+"]	["+getCost()+"]");
+	}
+	
+}
