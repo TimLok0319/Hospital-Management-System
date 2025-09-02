@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Staff extends Person implements Displayable{
@@ -24,7 +25,7 @@ public class Staff extends Person implements Displayable{
 		this.salary = salary;
 	}
 	
-	public void newStaff(Scanner read)
+	public void newStaff(Scanner read) throws InputMismatchException
 	{	
 		System.out.println("----- New Staff Registration -----");
 		super.newPerson(read);
