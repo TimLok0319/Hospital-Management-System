@@ -50,9 +50,7 @@ public class HospitalManagement {
 		medicines.add(new Medicine("Amoxicillin","Novartis","03/09/2028",25,87));
 		medicines.add(new Medicine("Ibuprofen","Johnson","03/09/2026",39,12));
 		
-		
-		
-		
+
 		String choice ;
 		//Exception Handling for main menu
 		do 
@@ -62,70 +60,70 @@ public class HospitalManagement {
 			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
 			System.out.println("Current Date & Time: " + dtf.format(LocalDateTime.now()));
 			Scanner read = new Scanner(System.in);
-			
-			
-			
-			//Display Menu
-			boolean invalid = false;
+
+			//Display Main Menu
 			System.out.println("\n======== HMS - Main Menu ========");
 			System.out.println("Please choose from one of the selections(1-6)");
 			System.out.println("1. Doctor\n2. Patients\n3. Medicine\n4. Laboratories\n5. Facilities\n6. Staff");
-			System.out.println("\nExit program --- X");
+			System.out.println("\nX --- Exit program\n");
+			choice = getValidatedChoice(read,"1","2","3","4","5","6","X");
 			
-			if(invalid) 
-				System.out.println("\n//Invalid Input!//");
-			
-			invalid = false;
-			
-			System.out.print("\n**Enter your choice: ");
-			choice = read.nextLine();
-			if(!choice.equalsIgnoreCase("1") && !choice.equalsIgnoreCase("2") && !choice.equalsIgnoreCase("3") && !choice.equalsIgnoreCase("4") && !choice.equalsIgnoreCase("5") && !choice.equalsIgnoreCase("6") && !choice.equalsIgnoreCase("x"))
-				invalid = true;
 		
 				if(choice.equals("1"))
 				{
-					System.out.println("\n======== HMS - Doctor Section ========");
-					System.out.println("Please choose from the follwing selections(1-2)");
-					System.out.println("\n1. Add New Doctor");
-					System.out.println("2. Display All Doctor");
-					System.out.println("\nReturn to main menu --- M");
-					System.out.println("Exit program --- X");
+					do {
+						System.out.println("\n======== HMS - Doctor Section ========");
+						System.out.println("Please choose from the follwing selections(1-2)");
+						System.out.println("\n1. Add New Doctor");
+						System.out.println("2. Display All Doctor");
+						System.out.println("\nM --- Return to main menu");
+						System.out.println("X --- Exit program\n");
+						
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//Doctor Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New Doctor
+								Doctor doctor = new Doctor();
+								doctor.newDoctor(read);
+								doctors.add(doctor);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								
+								//Next Step
+								System.out.print("\nNext Step:");
+								System.out.println("\nA --- Add another entry");
+								System.out.println("B --- Return to Doctor Section ");
+								System.out.println("M --- Return to main menu ");
+								System.out.println("X --- Exit program\n");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- Doctor's List -----");
+							for(Doctor d : doctors)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Doctors Recorded: " + doctors.size());
+							//Next Step
+							System.out.print("\nNext Step:");
+							System.out.println("\nB --- Return to Doctor Section ");
+							System.out.println("M --- Return to main menu ");
+							System.out.println("X --- Exit program\n");
+							
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
 					
-					do
-					{
-						if(invalid)
-							System.out.println("\n//Invalid Input!//");
-						
-						invalid = false;
-						System.out.print("\n**Enter your choice: ");
-						choice = read.nextLine();
-						if(!choice.equalsIgnoreCase("1") && !choice.equalsIgnoreCase("2") && !choice.equalsIgnoreCase("M")&& !choice.equalsIgnoreCase("X"))
-							invalid = true;
-						
-					}while(invalid);
-					
-					//Doctor Section conditional statement
-					if(choice.equals("1"))
-					{
-						//Add New Doctor
-						Doctor doctor = new Doctor();
-						doctor.newDoctor(read);
-						doctors.add(doctor);
-					}		
-					else if(choice.equals("2"))
-					{
-						
-					}
-					else if(choice.equalsIgnoreCase("M"))
-					{
-						
-					}
-					else if(choice.equalsIgnoreCase("X"))
-					{
-						
-					}
 				}
-				
 				else if(choice.equals("2"))
 				{}
 				else if(choice.equals("3"))
@@ -142,5 +140,24 @@ public class HospitalManagement {
 		System.out.println("Program Exited");
 	}
 	
-	
+	private static String getValidatedChoice(Scanner read, String... validOptions) {
+	    String input;
+	    boolean valid;
+	    do {
+	    	
+	    	System.out.print("**Enter your choice: ");
+	        input = read.nextLine().trim();
+	        valid = false;
+	        for (String option : validOptions) {
+	            if (input.equalsIgnoreCase(option)) {
+	                valid = true;
+	                break;
+	            }
+	        }
+	        if (!valid) {
+	            System.out.println("\n//Invalid Input!//");
+	        }
+	    } while (!valid);
+	    return input;
+	}
 }

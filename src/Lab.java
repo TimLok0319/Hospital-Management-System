@@ -28,17 +28,23 @@ public class Lab implements Displayable {
 	}
 	
 	public void newLab(Scanner read) {
+		boolean undone = true;
 		System.out.println("----- New Lab Registration -----");
     	System.out.print("Lab Name: ");
     	setLab(read.nextLine());
-    	System.out.print("Cost: ");
-    	try {
-			setCost(read.nextInt());
-		}catch(InputMismatchException e)
+    	
+    	while(undone)
 		{
-			System.out.println("//Error - Please enter number only!");
-		};
-		read.nextLine();
+			try {
+				System.out.print("Cost :RM ");
+				setCost(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
 	}
 	
 	@Override
