@@ -1,8 +1,19 @@
 import java.util.Scanner;
 
-public class Doctor extends Staff implements Displayable{
+public class Doctor extends Person implements Displayable{
 	private String specialist, workTime, qualification;
 	private int room;
+	
+	Doctor(String id, String name, String sex, String specialist,String workTime, String qualification, int room){
+		this.specialist = specialist;
+		this.workTime = workTime;
+		this.qualification = qualification;
+		this.room = room;
+		
+		super.setID(id);
+		super.setName(name);
+		super.setSex(sex);
+	}
 	
 	public String getSpec()
 	{

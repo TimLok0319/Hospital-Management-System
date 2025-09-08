@@ -4,6 +4,11 @@ import java.util.Scanner;
 public class Lab implements Displayable {
 	private String 	lab;
 	private int cost;
+	
+	Lab(String lab, int cost){
+		this.lab = lab;
+		this.cost = cost;
+	}
 
 	public String getLab() {
 		return lab;
