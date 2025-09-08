@@ -36,18 +36,25 @@ public class Staff extends Person implements Displayable{
 	
 	public void newStaff(Scanner read) throws InputMismatchException
 	{	
+		boolean undone = true;
 		System.out.println("----- New Staff Registration -----");
+		System.out.println("(ID Format - A000)");
 		super.newPerson(read);
-		System.out.print("Designation: ");
+		System.out.print("Designation (e.g. Lab Officer): ");
 		designation = read.nextLine();	
-		System.out.print("Salary: ");
-		try {
-			setSalary(read.nextInt());
-		}catch(InputMismatchException e)
+		
+		while(undone)
 		{
-			System.out.println("//Error - Please enter number only!");
-		};	
-		read.nextLine();
+			try {
+				System.out.print("Salary :RM");
+				setSalary(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
 	}
 	
 	@Override

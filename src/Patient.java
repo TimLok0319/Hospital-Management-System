@@ -47,21 +47,28 @@ public class Patient extends Person implements Displayable{
 	
 	public void newPatient(Scanner read)
 	{
+		boolean undone = true;
 		System.out.println("----- New Patient Registration -----");
+		System.out.println("(ID Format - P000)");
 		super.newPerson(read);
 		System.out.println("Disease:");
 		setDisease(read.nextLine());
-		System.out.println("Sex:");
 		super.setSex(read.nextLine());
-		System.out.println("Admit Status:");
+		System.out.println("Admit Status (Admitted/Discharged):");
 		setAdmitS(read.nextLine());
-		System.out.println("Age:");
-		try {
-			setAge(read.nextInt());
-		}catch(InputMismatchException e)
+		
+		while(undone)
 		{
-			System.out.println("//Error - Please enter number only!");
-		};
+			try {
+				System.out.println("Age (e.g. 18):");
+				setAge(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
 	}
 	
 	@Override

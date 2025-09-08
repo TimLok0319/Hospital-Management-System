@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Medicine implements Displayable{
@@ -57,17 +58,40 @@ public class Medicine implements Displayable{
     }
     
     public void newMedicine(Scanner read) {
+    	boolean undone = true;
     	System.out.println("----- New Medicine Registration -----");
     	System.out.print("Name: ");
     	setName(read.nextLine());
     	System.out.print("Manufacturer: ");
     	setManufacturer(read.nextLine());
-    	System.out.print("expiryDate: ");
+    	System.out.print("expiryDate (DD/MM/YYY): ");
     	setExpiryDate(read.nextLine());
-    	System.out.print("Cost: ");
-    	setCost(read.nextInt());
-    	System.out.print("Unit: ");
-    	setCount(read.nextInt());
+    	
+    	while(undone)
+		{
+			try {
+				System.out.print("Cost:RM");
+				setCost(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
+    	undone = true;
+    	while(undone)
+		{
+			try {
+				System.out.print("Count (Pcs): ");
+				setCount(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
     }
     
     @Override

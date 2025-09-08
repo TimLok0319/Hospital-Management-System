@@ -60,23 +60,30 @@ public class Doctor extends Person implements Displayable{
 	
 	public void newDoctor(Scanner read)
 	{
+		boolean undone = true;
 		System.out.println("----- New Doctor Registration -----");
+		System.out.println("(ID Format - 000)");
 		super.newPerson(read);
 		System.out.print("Specialization: ");
 		setSpec(read.nextLine());
-		System.out.print("Work Time: ");
+		System.out.print("Work Time(e.g. 9.00AM - 6PM): ");
 		setWorkT(read.nextLine());
-		System.out.print("Qualification: ");
+		System.out.print("Qualification (e.g. Professor): ");
 		setQuali(read.nextLine());
-		System.out.print("Room: ");
 		
-		try {
-			setRoom(read.nextInt());
-		}catch(InputMismatchException e)
+		while(undone)
 		{
-			System.out.println("//Error - Please enter number only!");
-		};
-		read.nextLine();
+			try {
+				System.out.print("Room (e.g. 101): ");
+				setRoom(read.nextInt());
+				undone = false;
+			}catch(InputMismatchException e){
+				System.out.println("//Error - Please enter number only!");
+				undone = true;
+			};
+			read.nextLine();
+		}
+		
 	}
 	
 	@Override
