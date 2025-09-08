@@ -41,7 +41,12 @@ public class Staff extends Person implements Displayable{
 		System.out.print("Designation: ");
 		designation = read.nextLine();	
 		System.out.print("Salary: ");
-		salary = read.nextInt();	
+		try {
+			setSalary(read.nextInt());
+		}catch(InputMismatchException e)
+		{
+			System.out.println("//Error - Please enter number only!");
+		};	
 		read.nextLine();
 	}
 	

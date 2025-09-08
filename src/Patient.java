@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Patient extends Person implements Displayable{
@@ -55,7 +56,12 @@ public class Patient extends Person implements Displayable{
 		System.out.println("Admit Status:");
 		setAdmitS(read.nextLine());
 		System.out.println("Age:");
-		setAge(read.nextInt());
+		try {
+			setAge(read.nextInt());
+		}catch(InputMismatchException e)
+		{
+			System.out.println("//Error - Please enter number only!");
+		};
 	}
 	
 	@Override
