@@ -1,7 +1,7 @@
 
 import java.util.Scanner;
 
-public class Medicine {
+public class Medicine implements Displayable{
     private String name;
     private String manufacturer;
     private String expiryDate;
@@ -62,7 +62,8 @@ public class Medicine {
     	setCount(read.nextInt());
     }
     
-    public void findMedicine() {
+    @Override
+    public void showInfo() {
     	System.out.println("["+getName()+"]"+"    ["+getManufacturer()+"]	["+getExpiryDate()+"]    [RM"+getCost()+"]");
     }
 }
