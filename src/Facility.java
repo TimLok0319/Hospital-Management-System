@@ -3,6 +3,8 @@ public class Facility implements Displayable{
 
 	private String facility;
 	
+	Facility(){};
+	
 	Facility(String facility){
 		this.facility = facility;
 	}

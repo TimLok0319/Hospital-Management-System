@@ -1,10 +1,7 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
-
-import org.omg.CORBA.SystemException;
 
 public class HospitalManagement {
 
@@ -68,20 +65,14 @@ public class HospitalManagement {
 			System.out.println("\nX --- Exit program\n");
 			choice = getValidatedChoice(read,"1","2","3","4","5","6","X");
 			
-		
+				//Doctor
 				if(choice.equals("1"))
 				{
 					do {
-						System.out.println("\n======== HMS - Doctor Section ========");
-						System.out.println("Please choose from the follwing selections(1-2)");
-						System.out.println("\n1. Add New Doctor");
-						System.out.println("2. Display All Doctor");
-						System.out.println("\nM --- Return to main menu");
-						System.out.println("X --- Exit program\n");
 						
+						displaySubMenu(1,"Doctor");
 						choice = getValidatedChoice(read,"1","2","M","X");
 							
-						
 						//Doctor Section conditional statement
 						if(choice.equals("1"))
 						{
@@ -95,12 +86,7 @@ public class HospitalManagement {
 								System.out.println("\nYour Entry had been recorded!");
 								
 								//Next Step
-								System.out.print("\nNext Step:");
-								System.out.println("\nA --- Add another entry");
-								System.out.println("B --- Return to Doctor Section ");
-								System.out.println("M --- Return to main menu ");
-								System.out.println("X --- Exit program\n");
-								
+								displaySubMenu(2,"Doctor");
 								choice = getValidatedChoice(read, "A", "M","B", "X");
 								
 							}while(choice.equals("A"));
@@ -114,32 +100,220 @@ public class HospitalManagement {
 							}
 							System.out.println("\nTotal Number of Doctors Recorded: " + doctors.size());
 							//Next Step
-							System.out.print("\nNext Step:");
-							System.out.println("\nB --- Return to Doctor Section ");
-							System.out.println("M --- Return to main menu ");
-							System.out.println("X --- Exit program\n");
+							displaySubMenu(2,"Doctor");
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
+				}
+				
+				//Patient
+				else if(choice.equals("2"))
+				{
+					do {
+						displaySubMenu(1,"Patient");
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//Patient Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New Patient
+								Patient Patient = new Patient();
+								Patient.newPatient(read);
+								patients.add(Patient);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								displaySubMenu(2,"Patient");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- Patient's List -----");
+							for(Patient d : patients)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Patients Recorded: " + patients.size());
+							displaySubMenu(2,"Patient");
 							
 							choice = getValidatedChoice(read, "M","B", "X");
 						}
 					}while(choice.equalsIgnoreCase("B"));
-					
 				}
-				else if(choice.equals("2"))
-				{}
+				
+				//Medicine
 				else if(choice.equals("3"))
-				{}
+				{
+					do {
+						displaySubMenu(1,"Medicine");
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//Medicine Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New Medicine
+								Medicine Medicine = new Medicine();
+								Medicine.newMedicine(read);
+								medicines.add(Medicine);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								displaySubMenu(2,"Medicine");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- Medicine's List -----");
+							for(Medicine d : medicines)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Medicines Recorded: " + medicines.size());
+							displaySubMenu(2,"Medicine");
+							
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
+				}
+				
+				//Laboratory
 				else if(choice.equals("4"))
-				{}
+				{
+					do {
+						displaySubMenu(1,"Lab");
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//Lab Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New Lab
+								Lab Lab = new Lab();
+								Lab.newLab(read);
+								labs.add(Lab);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								displaySubMenu(2,"Lab");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- Lab's List -----");
+							for(Lab d : labs)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Labs Recorded: " + labs.size());
+							displaySubMenu(2,"Lab");
+							
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
+				}
+				
+				//Facility
 				else if(choice.equals("5"))
-				{}
+				{
+					do {
+						displaySubMenu(1,"Facility");
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//facility Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New facility
+								Facility facility = new Facility();
+								facility.newFacility(read);
+								facilities.add(facility);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								displaySubMenu(2,"facility");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- facility's List -----");
+							for(Facility d : facilities)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Facilities Recorded: " + facilities.size());
+							displaySubMenu(2,"facility");
+							
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
+				}
+				
+				//Staff
 				else if(choice.equals("6"))
-				{}
+				{
+					do {
+						displaySubMenu(1,"Staff");
+						choice = getValidatedChoice(read,"1","2","M","X");
+							
+						
+						//Staff Section conditional statement
+						if(choice.equals("1"))
+						{
+							do {
+								//Add New Staff
+								Staff Staff = new Staff();
+								Staff.newStaff(read);
+								staffs.add(Staff);
+								
+								//prompt successful entry
+								System.out.println("\nYour Entry had been recorded!");
+								displaySubMenu(2,"Staff");
+								
+								choice = getValidatedChoice(read, "A", "M","B", "X");
+								
+							}while(choice.equals("A"));
+						}		
+						else if(choice.equals("2"))
+						{
+							System.out.println("\n----- Staff's List -----");
+							for(Staff d : staffs)
+							{
+								d.showInfo();
+							}
+							System.out.println("\nTotal Number of Staffs Recorded: " + staffs.size());
+							displaySubMenu(2,"Staff");
+							
+							choice = getValidatedChoice(read, "M","B", "X");
+						}
+					}while(choice.equalsIgnoreCase("B"));
+				}
 				
 		}while(!choice.equalsIgnoreCase("X"));
 		
 		System.out.println("Program Exited");
 	}
 	
+	//Helper Function
+	
+	//Function to validated user input
 	private static String getValidatedChoice(Scanner read, String... validOptions) {
 	    String input;
 	    boolean valid;
@@ -159,5 +333,28 @@ public class HospitalManagement {
 	        }
 	    } while (!valid);
 	    return input;
+	}
+	
+	//Function to print out sub menu 
+	private static void displaySubMenu(int page,String target)
+	{
+		if(page == 1)
+		{
+			System.out.println("\n======== HMS - "+target+" Section ========");
+			System.out.println("Please choose from the follwing selections(1-2)");
+			System.out.println("\n1. Add New "+target);
+			System.out.println("2. Display All "+target);
+			System.out.println("\nM --- Return to main menu");
+			System.out.println("X --- Exit program\n");
+		}
+		else if(page == 2)
+		{
+			System.out.print("\nNext Step:");
+			System.out.println("\nA --- Add another entry");
+			System.out.println("B --- Return to "+target+" Section ");
+			System.out.println("M --- Return to main menu ");
+			System.out.println("X --- Exit program\n");
+		}
+		
 	}
 }

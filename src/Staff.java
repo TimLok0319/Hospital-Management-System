@@ -5,6 +5,7 @@ public class Staff extends Person implements Displayable{
 	private String designation;
 	private int salary;
 	
+	Staff(){};
 	Staff(String id, String name, String sex, String designation, int salary){
 		super.setID(id);
 		super.setName(name);

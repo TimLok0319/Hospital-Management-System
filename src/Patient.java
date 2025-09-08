@@ -5,6 +5,8 @@ public class Patient extends Person implements Displayable{
 	private String disease, admitStatus;
 	private int age;
 	
+	Patient(){};
+	
 	Patient(String id, String name, String sex, String disease, String admitStatus, int age){
 		super.setID(id);
 		super.setName(name);
