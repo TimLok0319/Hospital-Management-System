@@ -1,6 +1,8 @@
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class HospitalManagement {
 
@@ -45,7 +47,37 @@ public class HospitalManagement {
 		medicines.add(new Medicine("Amoxicillin","Novartis","03/09/2028",25,87));
 		medicines.add(new Medicine("Ibuprofen","Johnson","03/09/2026",39,12));
 		
+		//Display Welcome Message
+		System.out.println("Welcome to the Hospital Management System!");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+		System.out.println("Current Date & Time: " + dtf.format(LocalDateTime.now()));
 		
+		//Display Menu
+		Scanner read = new Scanner(System.in);
+		String choice ;
+		boolean invalid = false;
+		System.out.println("\nPlease choose from one of the selections:");
+		System.out.println("1. Doctor\n2. Patients\n3. Medicine\n4. Laboratories\n5. Facilities\n6. Staff");
+		System.out.println("\n\nExit the program --- X");
+		
+		//Exception Handling for main menu
+		do {
+			
+			if(invalid) 
+				System.out.println("\n//Invalid Input!//");
+			
+			invalid = false;
+			
+			System.out.print("**Enter your choice (1-6): ");
+			choice = read.nextLine();
+			if(!choice.equalsIgnoreCase("1") && !choice.equalsIgnoreCase("2") && !choice.equalsIgnoreCase("3") && !choice.equalsIgnoreCase("4") && !choice.equalsIgnoreCase("5") && !choice.equalsIgnoreCase("6") && !choice.equalsIgnoreCase("x"))
+				invalid = true;
+			
+				
+			
+		}while(invalid);
+		System.out.println("Program Exited");
 	}
-
+	
+	
 }
