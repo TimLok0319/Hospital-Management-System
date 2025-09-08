@@ -36,8 +36,7 @@ public abstract class Person {
 	
 	public void newPerson(Scanner read)
 	{
-		
-		System.out.print("Staff's ID: ");
+		System.out.print("ID: ");
 		setID(read.nextLine());
 		System.out.print("Name: ");
 		setName(read.nextLine());
