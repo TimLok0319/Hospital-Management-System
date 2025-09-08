@@ -1,4 +1,5 @@
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Lab implements Displayable {
@@ -31,7 +32,13 @@ public class Lab implements Displayable {
     	System.out.print("Lab Name: ");
     	setLab(read.nextLine());
     	System.out.print("Cost: ");
-    	setCost(read.nextInt());
+    	try {
+			setCost(read.nextInt());
+		}catch(InputMismatchException e)
+		{
+			System.out.println("//Error - Please enter number only!");
+		};
+		read.nextLine();
 	}
 	
 	@Override

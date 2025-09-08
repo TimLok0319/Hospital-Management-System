@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Doctor extends Person implements Displayable{
@@ -68,7 +69,13 @@ public class Doctor extends Person implements Displayable{
 		System.out.print("Qualification: ");
 		setQuali(read.nextLine());
 		System.out.print("Room: ");
-		setRoom(read.nextInt());
+		
+		try {
+			setRoom(read.nextInt());
+		}catch(InputMismatchException e)
+		{
+			System.out.println("//Error - Please enter number only!");
+		};
 		read.nextLine();
 	}
 	
