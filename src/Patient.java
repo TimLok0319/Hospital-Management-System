@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class Patient{
+	private String disease, admitStatus;
+	private int age;
+	
+	public String getDisease()
+	{
+		return disease;
+	}
+	
+	public void setDisease(String disease)
+	{
+		this.disease = disease;
+	}
+	
+	public String getAdmitS()
+	{
+		return admitStatus;
+	}
+	
+	public void setAdmitS(String admitStatus)
+	{
+		this.admitStatus = admitStatus;
+	}
+	
+	public int getAge()
+	{
+		return age;
+	}
+	
+	public void setAge(int age)
+	{
+		this.age = age;
+	}
+	
+	public void newPatient(Scanner read)
+	{
+		System.out.println("----- New Patient Registration -----");
+		super.newPerson(read);
+		System.out.println("Disease:");
+		setDisease(read.nextLine());
+		System.out.println("Sex:");
+		super.setSex(read.nextLine());
+		System.out.println("Admit Status:");
+		setAdmitS(read.nextLine());
+		System.out.println("Age:");
+		setAge(read.nextInt());
+	}
+}
