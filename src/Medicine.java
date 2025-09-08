@@ -9,6 +9,8 @@ public class Medicine implements Displayable{
     private int cost;
     private int count;
     
+    Medicine(){};
+    
     Medicine(String name, String manufacturer,String expiryDate, int cost, int count){
     	this.name = name;
     	this.manufacturer = manufacturer;
