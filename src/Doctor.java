@@ -4,6 +4,8 @@ public class Doctor extends Person implements Displayable{
 	private String specialist, workTime, qualification;
 	private int room;
 	
+	Doctor(){};
+	
 	Doctor(String id, String name, String sex, String specialist,String workTime, String qualification, int room){
 		this.specialist = specialist;
 		this.workTime = workTime;
@@ -60,13 +62,13 @@ public class Doctor extends Person implements Displayable{
 		System.out.println("----- New Doctor Registration -----");
 		super.newPerson(read);
 		System.out.print("Specialization: ");
-		specialist = read.nextLine();
+		setSpec(read.nextLine());
 		System.out.print("Work Time: ");
-		workTime = read.nextLine();
+		setWorkT(read.nextLine());
 		System.out.print("Qualification: ");
-		qualification = read.nextLine();
+		setQuali(read.nextLine());
 		System.out.print("Room: ");
-		room = read.nextInt();
+		setRoom(read.nextInt());
 		read.nextLine();
 	}
 	
