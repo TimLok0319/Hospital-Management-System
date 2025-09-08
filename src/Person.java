@@ -43,7 +43,4 @@ public abstract class Person {
 		System.out.print("Sex: ");
 		setSex(read.nextLine());
 	}
-	
-	public abstract void showInfo();
-	
 }

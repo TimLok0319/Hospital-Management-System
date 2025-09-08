@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Patient{
+public class Patient extends Person implements Displayable{
 	private String disease, admitStatus;
 	private int age;
 	
@@ -47,4 +47,10 @@ public class Patient{
 		System.out.println("Age:");
 		setAge(read.nextInt());
 	}
+	
+	@Override
+	public void showInfo() {
+		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDisease()+"]    ["+getSex()+"]    ["+getAdmitS()+"]    ["+getAge()+"]");
+	}
+	
 }
