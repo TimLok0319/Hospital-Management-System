@@ -15,6 +15,7 @@ public class HospitalManagement {
 		ArrayList<Lab> labs = new ArrayList<>(20);
 		ArrayList<Facility> facilities = new ArrayList<>(20);
 		ArrayList<Medicine> medicines = new ArrayList<>(100);
+		ArrayList<Nurse> nurses = new ArrayList<>(25);
 		
 		//Values Initialization
 		//Doctor(String id, String name, String sex, String specialist,String workTime, String qualification, int room)
@@ -47,6 +48,11 @@ public class HospitalManagement {
 		medicines.add(new Medicine("Amoxicillin","Novartis","03/09/2028",25,87));
 		medicines.add(new Medicine("Ibuprofen","Johnson","03/09/2026",39,12));
 		
+		//Nurse(String id, String name, String sex, String shift)
+		nurses.add(new Nurse("N0001","Max Verstappen","Male","AM"));
+		nurses.add(new Nurse("N0002","Lily He","Female","PM"));
+		nurses.add(new Nurse("N0003","Nico Hulkg","Male","AM"));
+		
 		ArrayList<String> className = new ArrayList<>();
 		ArrayList<ArrayList<? extends Displayable>> list = new ArrayList<>();
 		list.add(doctors);
@@ -55,6 +61,7 @@ public class HospitalManagement {
 		list.add(labs);
 		list.add(facilities);
 		list.add(medicines);
+		list.add(nurses);
 		
 		for(int i= 0 ; i < list.size(); i ++)
 			className.add(list.get(i).get(0).returnClassName());
@@ -85,8 +92,6 @@ public class HospitalManagement {
 				String chosenClass = new String();
 				int choiceNum = Integer.parseInt(choice);
 				chosenClass = className.get(choiceNum-1);
-				System.out.println("Chosen Class: " +chosenClass);
-				System.out.println("Chosen ClassNum: " +choiceNum);
 				
 				do {
 					//Sub Menu
