@@ -29,7 +29,8 @@ public class Lab implements Displayable {
 		this.cost = cost;
 	}
 	
-	public void newLab(Scanner read) {
+	@Override
+	public void readNewEntry(Scanner read) {
 		boolean undone = true;
 		System.out.println("----- New Lab Registration -----");
     	System.out.print("Lab Name: ");
@@ -52,6 +53,16 @@ public class Lab implements Displayable {
 	@Override
 	public void showInfo() {
 		System.out.println("["+getLab()+"]	["+getCost()+"]");
+	}
+	
+	@Override
+	public String returnClassName() {
+		return "Lab";
+	}
+	
+	@Override
+	public Displayable create() {
+		return new Lab();
 	}
 	
 }

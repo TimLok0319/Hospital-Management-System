@@ -35,7 +35,8 @@ public class Staff extends Person implements Displayable{
 		this.salary = salary;
 	}
 	
-	public void newStaff(Scanner read) throws InputMismatchException
+	@Override
+	public void readNewEntry(Scanner read) 
 	{	
 		boolean undone = true;
 		System.out.println("----- New Staff Registration -----");
@@ -62,5 +63,15 @@ public class Staff extends Person implements Displayable{
 	public void showInfo()
 	{
 		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDes()+"]    ["+super.getSex()+"]    [RM"+getSalary()+"]");
+	}
+	
+	@Override
+	public String returnClassName() {
+		return "Staff";
+	}
+	
+	@Override
+	public Displayable create() {
+		return new Staff();
 	}
 }

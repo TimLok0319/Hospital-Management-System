@@ -1,4 +1,3 @@
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -59,7 +58,8 @@ public class Medicine implements Displayable{
         this.count = count;
     }
     
-    public void newMedicine(Scanner read) {
+    @Override
+	public void readNewEntry(Scanner read) {
     	boolean undone = true;
     	System.out.println("----- New Medicine Registration -----");
     	System.out.print("Name: ");
@@ -100,4 +100,14 @@ public class Medicine implements Displayable{
     public void showInfo() {
     	System.out.println("["+getName()+"]"+"    ["+getManufacturer()+"]	["+getExpiryDate()+"]    [RM"+getCost()+"]");
     }
+    
+    @Override
+	public String returnClassName() {
+		return "Medicine";
+	}
+    
+    @Override
+	public Displayable create() {
+		return new Medicine();
+	}
 }
