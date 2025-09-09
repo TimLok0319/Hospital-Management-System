@@ -58,7 +58,8 @@ public class Doctor extends Person implements Displayable{
 		this.room = room;
 	}
 	
-	public void newDoctor(Scanner read)
+	@Override
+	public void readNewEntry(Scanner read)
 	{
 		boolean undone = true;
 		System.out.println("----- New Doctor Registration -----");
@@ -90,5 +91,15 @@ public class Doctor extends Person implements Displayable{
 	public void showInfo()
 	{
 		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getSpec()+"]    ["+getWorkT()+"]    ["+getQuali()+"]    ["+getRoom()+"]");
+	}
+	
+	@Override
+	public String returnClassName() {
+		return "Doctor";
+	}
+	
+	@Override
+	public Displayable create() {
+		return new Doctor();
 	}
 }

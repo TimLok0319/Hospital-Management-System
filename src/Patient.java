@@ -47,22 +47,22 @@ public class Patient extends Person implements Displayable{
 		this.age = age;
 	}
 	
-	public void newPatient(Scanner read)
+	@Override
+	public void readNewEntry(Scanner read) 
 	{
 		boolean undone = true;
 		System.out.println("----- New Patient Registration -----");
 		System.out.println("(ID Format - P000)");
 		super.newPerson(read);
-		System.out.println("Disease:");
+		System.out.print("Disease:");
 		setDisease(read.nextLine());
-		super.setSex(read.nextLine());
-		System.out.println("Admit Status (Admitted/Discharged):");
+		System.out.print("Admit Status (Admitted/Discharged):");
 		setAdmitS(read.nextLine());
 		
 		while(undone)
 		{
 			try {
-				System.out.println("Age (e.g. 18):");
+				System.out.print("Age (e.g. 18):");
 				setAge(read.nextInt());
 				undone = false;
 			}catch(InputMismatchException e){
@@ -76,6 +76,16 @@ public class Patient extends Person implements Displayable{
 	@Override
 	public void showInfo() {
 		System.out.println("["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDisease()+"]    ["+getSex()+"]    ["+getAdmitS()+"]    ["+getAge()+"]");
+	}
+	
+	@Override
+	public String returnClassName() {
+		return "Patient";
+	}
+	
+	@Override
+	public Displayable create() {
+		return new Patient();
 	}
 	
 }

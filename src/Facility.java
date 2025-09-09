@@ -17,7 +17,8 @@ public class Facility implements Displayable{
 		this.facility = facility;
 	}
 	
-	public void newFacility(Scanner read) {
+	@Override
+	public void readNewEntry(Scanner read) {
 		System.out.println("----- New Facility Registration -----");
     	System.out.print("Name: ");
     	setFacility(read.nextLine());
@@ -25,6 +26,16 @@ public class Facility implements Displayable{
 	@Override
 	public void showInfo() {
 		System.out.println("["+getFacility()+"]");
+	}
+
+	@Override
+	public String returnClassName() {
+		return "Facility";
+	}
+
+	@Override
+	public Displayable create() {
+		return new Facility();
 	}
 	
 }
