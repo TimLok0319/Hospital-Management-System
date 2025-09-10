@@ -102,4 +102,12 @@ public class Doctor extends Person implements Displayable{
 	public Displayable create() {
 		return new Doctor();
 	}
+	
+	@Override
+	public String getInfoString() {
+	    // String version for GUI
+	    return "[" + super.getID() + "]    [" + super.getName() + "]    [" +
+	           getSpec() + "]    [" + getWorkT() + "]    [" +
+	           getQuali() + "]    [" + getRoom() + "]";
+	}
 }

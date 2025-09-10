@@ -74,4 +74,9 @@ public class Staff extends Person implements Displayable{
 	public Displayable create() {
 		return new Staff();
 	}
+	
+	@Override
+	public String getInfoString(){
+		return "["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDes()+"]    ["+super.getSex()+"]    [RM"+getSalary()+"]";
+	}
 }

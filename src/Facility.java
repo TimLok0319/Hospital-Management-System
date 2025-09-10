@@ -38,4 +38,9 @@ public class Facility implements Displayable{
 		return new Facility();
 	}
 	
+	@Override
+	public String getInfoString(){
+		return "["+getFacility()+"]";
+	}
+	
 }

@@ -223,4 +223,5 @@ public class HospitalManagement {
 		}
 		System.out.println("\nX --- Exit program\n");
 	}
+	
 }
