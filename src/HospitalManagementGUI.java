@@ -13,13 +13,9 @@ import javafx.scene.control.*;
 
 public class HospitalManagementGUI extends Application {
 	
-
-	String[] docAttribute =  {"ID","Name","Sex","Date"};
-	
 	@Override
-	public void start(Stage primaryStage) 
-	{
-		//ArrayList Declaration
+	public void start(Stage primaryStage) {
+		// ArrayList Declaration
 		ArrayList<Doctor> doctors = new ArrayList<>(25);
 		ArrayList<Patient> patients = new ArrayList<>(100);
 		ArrayList<Staff> staffs = new ArrayList<>(100);
@@ -27,168 +23,199 @@ public class HospitalManagementGUI extends Application {
 		ArrayList<Facility> facilities = new ArrayList<>(20);
 		ArrayList<Medicine> medicines = new ArrayList<>(100);
 		ArrayList<Nurse> nurses = new ArrayList<>(25);
-		
-		//Values Initialization
-		//Doctor(String id, String name, String sex, String specialist,String workTime, String qualification, int room)
-		doctors.add(new Doctor("094","Liang Tim Lok","Male","Cardiologist","9.00AM - 6PM","Professor",100));
-		doctors.add(new Doctor("302","Wong Wei Qi","Female","Dermatologist","9.00AM - 6PM","Professor",101));
-		doctors.add(new Doctor("921","Ali Malou","Male","Pediatrician","9.00AM - 6PM","Master",102));
-		
-		//Patient(String id, String name, String sex, String disease, String admitStatus, int age)
-		patients.add(new Patient("P001","Charles Leclerc","Male","Diabetes","Admitted",30));
-		patients.add(new Patient("P002","Abu Bin Ali","Male","Hypertension","Discharged",62));
-		patients.add(new Patient("P003","Leong Ru Hua","Female","Malaria","Admitted",15));
-		
-		//Staff(String id, String name, String sex, String designation, int salary)
+
+		// Values Initialization
+		doctors.add(new Doctor("094", "Liang Tim Lok", "Male", "Cardiologist", "9.00AM - 6PM", "Professor", 100));
+		doctors.add(new Doctor("302", "Wong Wei Qi", "Female", "Dermatologist", "9.00AM - 6PM", "Professor", 101));
+		doctors.add(new Doctor("921", "Ali Malou", "Male", "Pediatrician", "9.00AM - 6PM", "Master", 102));
+		patients.add(new Patient("P001", "Charles Leclerc", "Male", "Diabetes", "Admitted", 30));
+		patients.add(new Patient("P002", "Abu Bin Ali", "Male", "Hypertension", "Discharged", 62));
+		patients.add(new Patient("P003", "Leong Ru Hua", "Female", "Malaria", "Admitted", 15));
 		staffs.add(new Staff("S001", "Tan Boon Boon", "Male", "Pharmacist", 7000));
 		staffs.add(new Staff("S002", "Muthu Hemsivran", "Male", "Lab Technician", 5000));
 		staffs.add(new Staff("S003", "Christian Horner", "Male", "Receptionist", 3000));
-		
-		//Lab(String lab, int cost)
-		labs.add(new Lab("Pathology Lab",200));
-		labs.add(new Lab("Radiology Lab",300));
-		labs.add(new Lab("Micrology Lab",350));
-		
-		//Facility(String facility)
+		labs.add(new Lab("Pathology Lab", 200));
+		labs.add(new Lab("Radiology Lab", 300));
+		labs.add(new Lab("Micrology Lab", 350));
 		facilities.add(new Facility("Emergency Department"));
 		facilities.add(new Facility("Intensive Care Unit"));
 		facilities.add(new Facility("Pharmacy"));
-		
-		//Medicine(String name, String manufacturer,String expiryDate, int cost, int count)
-		medicines.add(new Medicine("Paracetamol","Pfizer","01/12/2030",10,100));
-		medicines.add(new Medicine("Amoxicillin","Novartis","03/09/2028",25,87));
-		medicines.add(new Medicine("Ibuprofen","Johnson","03/09/2026",39,12));
-		
-		//Nurse(String id, String name, String sex, String shift)
-		nurses.add(new Nurse("N0001","Max Verstappen","Male","AM"));
-		nurses.add(new Nurse("N0002","Lily He","Female","PM"));
-		nurses.add(new Nurse("N0003","Nico Hulkg","Male","AM"));
-		
-		ArrayList<String> className = new ArrayList<>();
-		ArrayList<ArrayList<? extends Displayable>> list = new ArrayList<>();
-		list.add(doctors);
-		list.add(patients);
-		list.add(staffs);		
-		list.add(labs);
-		list.add(facilities);
-		list.add(medicines);
-		list.add(nurses);
-				
-		//Finish the start()
+		medicines.add(new Medicine("Paracetamol", "Pfizer", "01/12/2030", 10, 100));
+		medicines.add(new Medicine("Amoxicillin", "Novartis", "03/09/2028", 25, 87));
+		medicines.add(new Medicine("Ibuprofen", "Johnson", "03/09/2026", 39, 12));
+		nurses.add(new Nurse("N0001", "Max Verstappen", "Male", "AM"));
+		nurses.add(new Nurse("N0002", "Lily He", "Female", "PM"));
+		nurses.add(new Nurse("N0003", "Nico Hulkg", "Male", "AM"));
+
+		// --- Main Menu Setup ---
 		BorderPane mainMenu = createMainMenu();
-	    Scene scene = new Scene(mainMenu, 600, 455);
+		Scene scene = new Scene(mainMenu, 600, 600);
 
-	    // === Hook up Main Menu Buttons ===
-	    // Doctor
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(0)).getChildren().get(0))
-	        .setOnAction(e -> {
-	            BorderPane doctorMenu = createSectionPane("Doctor");
-	            scene.setRoot(doctorMenu);
+		// --- Main Menu Button Handlers ---
+		VBox mainVBox = (VBox) mainMenu.getCenter();
+		HBox buttonBox = (HBox) mainVBox.getChildren().get(1);
+		VBox col1 = (VBox) buttonBox.getChildren().get(0);
+		VBox col2 = (VBox) buttonBox.getChildren().get(1);
 
-	            // add new doctor
-	            ((Button)((HBox)((VBox)doctorMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-	                .setOnAction(ev -> scene.setRoot(createAddMenu("Doctor", new String[]{"ID","Name","Sex","Specialist","WorkTime","Qualification","Room"})));
-
-	            // display doctors
-	            ((Button)((HBox)((VBox)doctorMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-	                .setOnAction(ev -> scene.setRoot(displayAll("Doctor", doctors)));
-
-	            // back to main menu
-	            ((Button)((HBox)((VBox)doctorMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-	                .setOnAction(ev -> scene.setRoot(mainMenu));
-	        });
-
-	    // Patient
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(1)).getChildren().get(2))
-	        .setOnAction(e -> {
-	            BorderPane patientMenu = createSectionPane("Patient");
-	            scene.setRoot(patientMenu);
-
-	            ((Button)((HBox)((VBox)patientMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-	                .setOnAction(ev -> scene.setRoot(createAddMenu("Patient", new String[]{"ID","Name","Sex","Disease","AdmitStatus","Age"})));
-
-	            ((Button)((HBox)((VBox)patientMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-	                .setOnAction(ev -> scene.setRoot(displayAll("Patient", patients)));
-
-	            ((Button)((HBox)((VBox)patientMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-	                .setOnAction(ev -> scene.setRoot(mainMenu));
-	        });
-	    
-	    //Facility
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(1)).getChildren().get(2))
-        .setOnAction(e -> {
-            BorderPane facilityMenu = createSectionPane("Facility");
-            scene.setRoot(facilityMenu);
-
-            ((Button)((HBox)((VBox)facilityMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-                .setOnAction(ev -> scene.setRoot(createAddMenu("facility", new String[]{"Facility"})));
-
-            ((Button)((HBox)((VBox)facilityMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(displayAll("facility", facilities)));
-
-            ((Button)((HBox)((VBox)facilityMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(mainMenu));
-        });
-	    
-	    //Staff
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(1)).getChildren().get(2))
-        .setOnAction(e -> {
-            BorderPane staffMenu = createSectionPane("Staff");
-            scene.setRoot(staffMenu);
-
-            ((Button)((HBox)((VBox)staffMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-                .setOnAction(ev -> scene.setRoot(createAddMenu("Staff", new String[]{"ID","Name","Sex","Designation","Salary"})));
-
-            ((Button)((HBox)((VBox)staffMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(displayAll("Staff", staffs)));
-
-            ((Button)((HBox)((VBox)staffMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(mainMenu));
-        });
-	    
-	  //Lab
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(1)).getChildren().get(2))
-        .setOnAction(e -> {
-            BorderPane labMenu = createSectionPane("Lab");
-            scene.setRoot(labMenu);
-
-            ((Button)((HBox)((VBox)labMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-                .setOnAction(ev -> scene.setRoot(createAddMenu("Lab", new String[]{"Lab","Cost"})));
-
-            ((Button)((HBox)((VBox)labMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(displayAll("Lab", labs)));
-
-            ((Button)((HBox)((VBox)labMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(mainMenu));
-        });
-	    
-	    //Medicine
-	    ((Button)((VBox)((HBox)((VBox)mainMenu.getCenter()).getChildren().get(1)).getChildren().get(1)).getChildren().get(2))
-        .setOnAction(e -> {
-            BorderPane medicineMenu = createSectionPane("Medicine");
-            scene.setRoot(medicineMenu);
-
-            ((Button)((HBox)((VBox)medicineMenu.getCenter()).getChildren().get(1)).getChildren().get(0))
-                .setOnAction(ev -> scene.setRoot(createAddMenu("Medicine", new String[]{"Name","Manufacturer","ExpiryDate","Cost","Count"})));
-
-            ((Button)((HBox)((VBox)medicineMenu.getCenter()).getChildren().get(1)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(displayAll("Medicine", medicines)));
-
-            ((Button)((HBox)((VBox)medicineMenu.getBottom()).getChildren().get(0)).getChildren().get(1))
-                .setOnAction(ev -> scene.setRoot(mainMenu));
-        });
+		Button doctorBtn = (Button) col1.getChildren().get(0);
+		Button staffBtn = (Button) col1.getChildren().get(1);
+		Button facilityBtn = (Button) col1.getChildren().get(2);
+		Button labBtn = (Button) col2.getChildren().get(0);
+		Button medicineBtn = (Button) col2.getChildren().get(1);
+		Button patientBtn = (Button) col2.getChildren().get(2);
 		
-		//Scene scene = new Scene(mainMenu,600,455);
-		//Scene scene = new Scene(doctorMenu,600,350);
-		//Scene scene = new Scene(addNew,600,455);
+		VBox exitBox = (VBox) mainMenu.getBottom();
+		Button exitBtn = (Button) exitBox.getChildren().get(1);
+		exitBtn.setOnAction(e -> System.exit(0));
+
+		// Doctor Section
+		doctorBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Doctor");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Doctor", mainMenu, scene, doctors, 
+				new String[]{"ID","Name","Sex","Specialist","WorkTime","Qualification","Room"});
+		});
+
+		// Staff Section
+		staffBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Staff");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Staff", mainMenu, scene, staffs,
+				new String[]{"ID","Name","Sex","Designation","Salary"});
+		});
+
+		// Facility Section
+		facilityBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Facility");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Facility", mainMenu, scene, facilities,
+				new String[]{"Facility"});
+		});
+
+		// Lab Section
+		labBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Lab");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Lab", mainMenu, scene, labs,
+				new String[]{"Lab","Cost"});
+		});
+
+		// Medicine Section
+		medicineBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Medicine");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Medicine", mainMenu, scene, medicines,
+				new String[]{"Name","Manufacturer","ExpiryDate","Cost","Count"});
+		});
+
+		// Patient Section
+		patientBtn.setOnAction(e -> {
+			BorderPane sectionMenu = createSectionPane("Patient");
+			scene.setRoot(sectionMenu);
+			handleSectionMenu(sectionMenu, "Patient", mainMenu, scene, patients,
+				new String[]{"ID","Name","Sex","Disease","AdmitStatus","Age"});
+		});
+
 
 		primaryStage.setTitle("Hospital Management System");
 		primaryStage.setScene(scene);
 		primaryStage.show();
 	}
-	
+
+	// Helper method to handle all section menu logic
+	private void handleSectionMenu(BorderPane sectionMenu, String sectionName, BorderPane mainMenu, Scene scene, ArrayList list, String[] attributes) {
+		
+		// --- Bottom Buttons ---
+		VBox bottomVBox = (VBox) sectionMenu.getBottom();
+		HBox bottomBtnBox = (HBox) bottomVBox.getChildren().get(0);
+		Button exitBtn = (Button) bottomBtnBox.getChildren().get(0);
+		Button backBtn = (Button) bottomBtnBox.getChildren().get(1);
+
+		exitBtn.setOnAction(e -> System.exit(0));
+		backBtn.setOnAction(e -> scene.setRoot(mainMenu));
+
+		// --- Center Buttons ---
+		VBox centerVBox = (VBox) sectionMenu.getCenter();
+		HBox centerBtnBox = (HBox) centerVBox.getChildren().get(1);
+		Button addBtn = (Button) centerBtnBox.getChildren().get(0);
+		Button displayBtn = (Button) centerBtnBox.getChildren().get(1);
+
+		// Display All Logic
+		displayBtn.setOnAction(e -> {
+			BorderPane displayPane = displayAll(sectionName, list);
+			scene.setRoot(displayPane);
+			// Handle back button on display screen
+			HBox displayBottomBox = (HBox) displayPane.getBottom();
+			Button backToSectionBtn = (Button) displayBottomBox.getChildren().get(0);
+			backToSectionBtn.setOnAction(ev -> scene.setRoot(sectionMenu));
+			Button exitFromDisplayBtn = (Button) displayBottomBox.getChildren().get(1);
+			exitFromDisplayBtn.setOnAction(ev -> System.exit(0));
+		});
+
+		// Add New Logic
+		addBtn.setOnAction(e -> {
+			BorderPane addPane = createAddMenu(sectionName, attributes);
+			scene.setRoot(addPane);
+			
+			VBox formVBox = (VBox) addPane.getCenter();
+			HBox addBottomButtons = (HBox) formVBox.getChildren().get(formVBox.getChildren().size() - 1);
+			Button saveBtn = (Button) addBottomButtons.getChildren().get(0);
+			Button cancelBtn = (Button) addBottomButtons.getChildren().get(1);
+
+			cancelBtn.setOnAction(ev -> scene.setRoot(sectionMenu));
+
+			saveBtn.setOnAction(ev -> {
+				try {
+					ArrayList<String> values = new ArrayList<>();
+					for (int i = 1; i < formVBox.getChildren().size() - 1; i++) {
+						VBox fieldVBox = (VBox) formVBox.getChildren().get(i);
+						HBox inputHBox = (HBox) fieldVBox.getChildren().get(1);
+						TextField inputField = (TextField) inputHBox.getChildren().get(0);
+						values.add(inputField.getText());
+					}
+
+					// Create object based on section
+					switch(sectionName) {
+						case "Doctor":
+							list.add(new Doctor(values.get(0), values.get(1), values.get(2), values.get(3), values.get(4), values.get(5), Integer.parseInt(values.get(6))));
+							break;
+						case "Patient":
+							list.add(new Patient(values.get(0), values.get(1), values.get(2), values.get(3), values.get(4), Integer.parseInt(values.get(5))));
+							break;
+						case "Staff":
+							list.add(new Staff(values.get(0), values.get(1), values.get(2), values.get(3), Integer.parseInt(values.get(4))));
+							break;
+						case "Lab":
+							list.add(new Lab(values.get(0), Integer.parseInt(values.get(1))));
+							break;
+						case "Facility":
+							list.add(new Facility(values.get(0)));
+							break;
+						case "Medicine":
+							list.add(new Medicine(values.get(0), values.get(1), values.get(2), Integer.parseInt(values.get(3)), Integer.parseInt(values.get(4))));
+							break;
+					}
+					
+					Alert alert = new Alert(Alert.AlertType.INFORMATION);
+					alert.setTitle("Success");
+					alert.setHeaderText(null);
+					alert.setContentText(sectionName + " has been recorded successfully!");
+					alert.showAndWait();
+					
+					scene.setRoot(sectionMenu);
+
+				} catch (Exception ex) {
+					Alert alert = new Alert(Alert.AlertType.ERROR);
+					alert.setTitle("Error");
+					alert.setHeaderText("Invalid Input");
+					alert.setContentText("Please check your inputs. " + ex.getMessage());
+					alert.showAndWait();
+				}
+			});
+		});
+	}
 	public static void main(String[] args) {
-        launch(args);  // This starts JavaFX
+        launch(args); 
     }
 	
 	public static BorderPane createMainMenu()
@@ -247,7 +274,6 @@ public class HospitalManagementGUI extends Application {
 		exitBox.setAlignment(Pos.BOTTOM_CENTER);
 		
 		vbox1.getChildren().addAll(buttonBox,exitBox);
-		//vbox1.setStyle("-fx-padding: 5 0 0 0;");
 		
 		mainMenu.setTop(titleBox);
 		mainMenu.setCenter(vbox1);
