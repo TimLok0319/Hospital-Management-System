@@ -98,7 +98,7 @@ public class Medicine implements Displayable{
     
     @Override
     public void showInfo() {
-    	System.out.println("["+getName()+"]"+"    ["+getManufacturer()+"]	["+getExpiryDate()+"]    [RM"+getCost()+"]");
+    	System.out.println("["+getName()+"]"+"    ["+getManufacturer()+"]	["+getExpiryDate()+"]    [RM"+getCost()+"]    ["+getCount()+"]");
     }
     
     @Override
@@ -110,4 +110,10 @@ public class Medicine implements Displayable{
 	public Displayable create() {
 		return new Medicine();
 	}
+    
+    @Override
+	public String getInfoString(){
+		return "["+getName()+"]"+"    ["+getManufacturer()+"]	["+getExpiryDate()+"]    [RM"+getCost()+"]    ["+getCount()+"]" ;
+	}
+    
 }

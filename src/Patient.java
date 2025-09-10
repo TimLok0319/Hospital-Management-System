@@ -88,4 +88,10 @@ public class Patient extends Person implements Displayable{
 		return new Patient();
 	}
 	
+	@Override
+	public String getInfoString(){
+		return "["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getDisease()+"]    ["+getSex()+"]    ["+getAdmitS()+"]    ["+getAge()+"]";
+	}
+	
+	
 }

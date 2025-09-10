@@ -48,4 +48,9 @@ public class Nurse extends Person implements Displayable{
 	public Displayable create() {
 		return new Nurse();
 	}
+	
+	@Override
+	public String getInfoString(){
+		return "["+super.getID()+"]"+"    ["+super.getName()+"]    ["+getShift()+"]";
+	}
 }

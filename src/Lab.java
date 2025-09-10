@@ -65,4 +65,10 @@ public class Lab implements Displayable {
 		return new Lab();
 	}
 	
+	@Override
+	public String getInfoString(){
+		return "["+getLab()+"]	["+getCost()+"]";
+	}
+	
+	
 }

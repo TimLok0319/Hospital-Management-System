@@ -5,4 +5,5 @@ public interface Displayable {
 	void readNewEntry(Scanner read);
 	String returnClassName();
 	Displayable create();
+	String getInfoString();
 }
