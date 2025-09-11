@@ -49,9 +49,9 @@ public class HospitalManagement {
 		medicines.add(new Medicine("Ibuprofen","Johnson","03/09/2026",39,12));
 		
 		//Nurse(String id, String name, String sex, String shift)
-		nurses.add(new Nurse("N0001","Max Verstappen","Male","AM"));
+		/*nurses.add(new Nurse("N0001","Max Verstappen","Male","AM"));
 		nurses.add(new Nurse("N0002","Lily He","Female","PM"));
-		nurses.add(new Nurse("N0003","Nico Hulkg","Male","AM"));
+		nurses.add(new Nurse("N0003","Nico Hulkg","Male","AM"));*/
 		
 		ArrayList<String> className = new ArrayList<>();
 		ArrayList<ArrayList<? extends Displayable>> list = new ArrayList<>();
@@ -61,11 +61,13 @@ public class HospitalManagement {
 		list.add(labs);
 		list.add(facilities);
 		list.add(medicines);
-		list.add(nurses);
+		//list.add(nurses);
 		
+		//get number of class
 		for(int i= 0 ; i < list.size(); i ++)
 			className.add(list.get(i).get(0).returnClassName());
 		
+		//
 		String[] classNumArray = new String[className.size()+1];
 		classNumArray[0] = "X";
 		for (int i = 1; i < className.size()+1; i++)
@@ -74,7 +76,6 @@ public class HospitalManagement {
 		}
 		
 		String choice ;
-		//Exception Handling for main menu
 		do 
 		{
 			//Display Welcome Message
@@ -102,7 +103,7 @@ public class HospitalManagement {
 					if(choice.equals("1"))
 					{
 						do {
-							//Add New Doctor
+							//Add New
 							createNew(chosenClass,list, read);
 							//Next Step
 							choice = getValidatedChoice(read, "A", "M","B", "X");
@@ -180,6 +181,7 @@ public class HospitalManagement {
 		
 	}
 	
+	//Display All object
 	private static void displayAll(String category, ArrayList<ArrayList<? extends Displayable>> list) {
 		System.out.println("\n----- "+category+"'s List -----");
 		for(ArrayList<? extends Displayable> item: list)
@@ -193,6 +195,7 @@ public class HospitalManagement {
 		displaySubMenu(3,category);
 	}
 	
+	//Create new object
 	private static void createNew(String category, ArrayList<ArrayList<? extends Displayable>> list, Scanner read) 
 	{
 		for(ArrayList<? extends Displayable> classes: list)
@@ -214,6 +217,8 @@ public class HospitalManagement {
 		System.out.println("\nYour Entry had been recorded!");
 		displaySubMenu(2,category);
 	}
+	
+	//Display Main Menu
 	private static void displayMainMenu(int classNum, ArrayList<String> className) {
 		System.out.println("\n======== HMS - Main Menu ========");
 		System.out.println("Please choose from one of the selections:");
